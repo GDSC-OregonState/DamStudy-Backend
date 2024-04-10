@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mongo:
@@ -6,10 +6,17 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_DATABASE}
     ports:
       - "${DB_PORT}:27017"
     volumes:
       - mongo_volume:/data/db
+    networks:
+      - default
 
 volumes:
   mongo_volume:
+
+networks:
+  default:
+    driver: bridge
