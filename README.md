@@ -1,49 +1,45 @@
-# Project damstudy
+# DamStudy (backend)
 
-One Paragraph of project description goes here
+This is the backend for the DamStudy project. DamStudy is a study room finder for Oregon State University (OSU) students. The backend is written in Go and uses the MongoDB driver for Go, Websockets, and a RESTful API with the go-chi router.
+
+## Prerequisites
+
+- Air
+- Go
+- Docker
+- Docker Compose
+- MongoDB (if not using Docker)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+1. Clone the repository
+2. Run `make build` to build the application
+3. Run `make docker-run` to start the MongoDB container
+4. Run `make run` to start the application
+5. Navigate to `http://localhost:8080` in your browser
+6. Run `make docker-down` to stop the MongoDB container
 
-## MakeFile
+## Makefile Commands
 
-run all make commands with clean tests
-```bash
-make all build
-```
+| Command            | Description                            |
+| ------------------ | -------------------------------------- |
+| `make all build`   | Run all make commands with clean tests |
+| `make build`       | Build the application                  |
+| `make run`         | Run the application                    |
+| `make docker-run`  | Create DB container                    |
+| `make docker-down` | Shutdown DB container                  |
+| `make watch`       | Live reload the application            |
+| `make test`        | Run the test suite                     |
+| `make clean`       | Clean up binary from the last build    |
 
-build the application
-```bash
-make build
-```
+## Deployment
 
-run the application
-```bash
-make run
-```
+(Coming soon)
 
-Create DB container
-```bash
-make docker-run
-```
+## API Documentation
 
-Shutdown DB container
-```bash
-make docker-down
-```
+(Coming soon)
 
-live reload the application
-```bash
-make watch
-```
+## License
 
-run the test suite
-```bash
-make test
-```
-
-clean up binary from the last build
-```bash
-make clean
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
