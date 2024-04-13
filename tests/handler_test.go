@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"damstudy/internal/server"
+	"damstudy-backend/internal/server"
 	"io"
 	"net/http"
 	"net/http/httptest"

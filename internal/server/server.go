@@ -9,7 +9,7 @@ import (
 
 	_ "github.com/joho/godotenv/autoload"
 
-	"damstudy/internal/database"
+	"damstudy-backend/internal/database"
 )
 
 type Server struct {

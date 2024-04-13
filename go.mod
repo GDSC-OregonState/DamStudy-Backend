@@ -1,4 +1,4 @@
-module damstudy
+module damstudy-backend
 
 go 1.22.1
 
@@ -6,6 +6,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/joho/godotenv v1.5.1
 	go.mongodb.org/mongo-driver v1.14.0
+	nhooyr.io/websocket v1.8.11
 )
 
 require (
