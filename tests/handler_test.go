@@ -1,11 +1,12 @@
 package tests
 
 import (
-	"damstudy-backend/internal/server"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"damstudy-backend/internal/server"
 )
 
 func TestHandler(t *testing.T) {

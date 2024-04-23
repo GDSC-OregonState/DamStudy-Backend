@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"time"
 
-	"damstudy-backend/internal/models"
-
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
@@ -22,9 +20,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 
 	r.Get("/", s.HelloWorldHandler)
 
-	r.Get("/mock", s.mockHandler)
-
-	r.Get("/all", s.allRoomsHandler)
+	r.Get("/rooms", s.AllRoomsHandler)
 
 	r.Get("/health", s.healthHandler)
 
@@ -33,7 +29,8 @@ func (s *Server) RegisterRoutes() http.Handler {
 	return r
 }
 
-func (s *Server) allRoomsHandler(w http.ResponseWriter, r *http.Request) {
+// Get all documents from the rooms collection
+func (s *Server) AllRoomsHandler(w http.ResponseWriter, r *http.Request) {
 	roomService := s.db.NewRoomService("damstudy", "rooms")
 	resp, err := roomService.GetAll()
 	if err != nil {
@@ -43,28 +40,6 @@ func (s *Server) allRoomsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	jsonResp, _ := json.Marshal(resp)
-	_, _ = w.Write(jsonResp)
-}
-
-func (s *Server) mockHandler(w http.ResponseWriter, r *http.Request) {
-	roomService := s.db.NewRoomService("damstudy", "rooms")
-
-	room, err := roomService.Create(models.Room{
-		Name:       "room1",
-		Seats:      10,
-		Technology: []string{"tech1", "tech2"},
-		NoiseLevel: "noise1",
-		Location:   "location1",
-		Seating:    "seating1",
-		Image:      "image1",
-	})
-	if err != nil {
-		log.Printf("error creating room: %v", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	jsonResp, _ := json.Marshal(room)
 	_, _ = w.Write(jsonResp)
 }
 
