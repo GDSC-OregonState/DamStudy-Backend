@@ -21,12 +21,16 @@ let damstudyCollection =
   db.getCollection("rooms") || db.createCollection("rooms");
 
 damstudyCollection.insertOne({
-  name: "Room 1",
+  name: "KEC 1001 Study Room",
   image:
     "https://egis.umn.edu/studyspace_v2/studyspaceimages/10ChurchStreet-101.jpg",
   noiseLevel: "Quiet",
-  seats: 10,
+  seats: 4,
   technology: ["Whiteboard", "Projector"],
-  seating: "Tables",
-  location: "10 Church Street",
+  seating: "Table",
+  location: "Kelley Engineering Center",
+  coordinates: {
+    latitude: 44.56706903872953,
+    longitude: -123.27873483900234,
+  },
 });
