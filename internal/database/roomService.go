@@ -53,3 +53,40 @@ func (rs *RoomServiceImpl) Create(room models.Room) (*mongo.InsertOneResult, err
 	}
 	return result, nil
 }
+
+func (rs *RoomServiceImpl) Update(room models.Room) (*mongo.UpdateResult, error) {
+	collection := rs.db.Database(rs.dbName).Collection(rs.collectionName)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	result, err := collection.UpdateOne(ctx, bson.M{"_id": room.ID}, bson.M{"$set": room})
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func (rs *RoomServiceImpl) Delete(id string) (*mongo.DeleteResult, error) {
+	collection := rs.db.Database(rs.dbName).Collection(rs.collectionName)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	result, err := collection.DeleteOne(ctx, bson.M{"_id": id})
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func (rs *RoomServiceImpl) GetByID(id string) (models.Room, error) {
+	collection := rs.db.Database(rs.dbName).Collection(rs.collectionName)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	var room models.Room
+	err := collection.FindOne(ctx, bson.M{"_id": id}).Decode(&room)
+	if err != nil {
+		return models.Room{}, err
+	}
+	return room, nil
+}
