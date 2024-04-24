@@ -11,6 +11,7 @@ services:
       - "${DB_PORT}:27017"
     volumes:
       - mongo_volume:/data/db
+      - ./:/docker-entrypoint-initdb.d/
     networks:
       - default
 
