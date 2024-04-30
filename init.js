@@ -1,5 +1,5 @@
 let username = "damstudy";
-let password = "damstuy";
+let password = "damstudy";
 
 if (typeof username === "undefined" || username === null) {
   throw new Error("The username is missing.");
